@@ -1,0 +1,14 @@
+Q1. Show all the student whose course id is either 103,102;
+Q2. Show student name whose name starts with s
+Q3. Show all the faculty whose email id is not null
+Q4. Show the number of student in each course
+Q5. Show the numbers of courses according to duration
+Q6. Increase the fees of all courses by 10%
+Q7. Increase the salary of faculty by 20% whose experience is greater than 5 years
+Q8. Delete the course communication
+Q9. Delete the students who has not paid the fees
+Q10.Show the faculty in desc order of salary 
+Q11. Show the student in asc order of course id and if the course is same then desc order of joining date
+q12. Show the total student in each course in asc order
+q13. Add the column joining date in faculty
+q14. Change the column to exp of experience
