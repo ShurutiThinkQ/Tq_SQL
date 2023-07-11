@@ -1,96 +1,77 @@
-# String functions
+#String queries
 
-select length("java") from dual;
+select length("Welcome") as Length;
 
-select concat("Rohit", " Khomane");
+select concat("Amey","@thinkqu.com");
 
 #check index
 
-select instr("java", 'a');
+select instr("Java","a") ;
 
-#return substring(start, length)
+#substring
 
-select substr("hello", 3,4);
+select substr("Welcome",-3,2);
+#substr(string, startindex, length)
 
-select substr("Programming", 3,4); # 4 characters from 3rd index
-
-select substr("Programming", -3,2);
-
-select length(concat("Rohit", " Khomane"));
-
-
-select ascii('t');
-
-select format("0.481","Percent");
-
+select ascii('a');
 select upper("java");
+select lower("java");
 
-select lower("Program");
+select reverse("Hello");
 
-#repeat
-select repeat("java",7);
+select repeat("Hello ",5);
 
-# add @ gmail.com to all the employees
+select replace ("Java","a","b");
 
-select * from employees;
+# update @gmail.com to every email
+update employees
+set email= concat(email,"@gmail.com");
 
 update employees
-set email = concat(email, "@gmail.com");
+set email= replace(email,"gmail","yahoo");
 
-use bikedb;
+# Add title acc to gender
 
-select * from customer;
+alter table employees 
+add column gender varchar(10);
 
-select if(gender like 'Female', concat("Mrs.", first_name),concat("Mr.",first_name))as firstname, last_name
-from customer;
-
-
-select  concat(if(gender like 'Female', concat("Mrs.", first_name),concat("Mr.",first_name)), " ",last_name) as 'Fullname'
-from customer;
-
-#Title case
-
-select concat(upper(substring(first_name,1,1)), lower(substring(first_name,2, length(first_name)))) as TitleName
-from customer;
-
-
-# replace string
-
-update customer 
-set last_name= replace(last_name, "Gupta","Mittal");
-
-select * from customer;
-
-select first_Name, format(salary,"C") as 'Current Salary'
+select concat(if(gender like "M", concat("Mr.", first_name), concat("Mrs.",first_name)), " ",last_name) as FullName
 from employees;
 
 
+select if(gender like "M", concat("Mr.", first_name), concat("Mrs.",first_name)) from employees;
+
+# Title case
+
+select concat(upper(substr(first_name,1,1)),lower(substr(first_name,2,length(first_name)))) from employees;
+
+update employees
+set email= lower(email);
+
+# group concat
 # All the employees working in a deptid
 
-select DEPARTMENT_ID, group_concat(FIRST_NAME," ") as EmployeeNames
+select DEPARTMENT_ID,count(EMPLOYEE_ID) as Total
 from employees
 group by DEPARTMENT_ID;
 
-select DEPARTMENT_ID, group_concat(EMPLOYEE_ID," ") as EmployeeId
+
+select DEPARTMENT_ID, group_concat(EMPLOYEE_ID," ") as EmployeesIds
 from employees
 group by DEPARTMENT_ID;
 
-#findinset
+select DEPARTMENT_ID, group_concat(First_name," ") as EmployeeNames
+from employees
+group by DEPARTMENT_ID;
 
-select find_in_set("Delhi","Delhi,Mumbai,Chennai");
 
-select find_in_set("Bangalore","Delhi,Mumbai,Chennai");
 
-select find_in_set("Mumbai","Delhi,Mumbai,Chennai");
 
-select find_in_set("Den", group_concat(first_name))
-from employees; # Gives the index at which it is present otherwise 0
 
-select strcmp("Java","Python");
 
-select strcmp("Python","Java");
 
-select strcmp("Java","Java");
+
+
 
 
 
